@@ -1,0 +1,919 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabowa - Business Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body class="dashboard-body">
+    <div class="dashboard-container">
+
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-logo">K</div>
+                <h2>KABOWA</h2>
+            </div>
+
+            <p class="sidebar-label">MAIN MENU</p>
+
+            <nav>
+                <a href="#overview" class="active">Overview</a>
+<a href="#businessProfile" id="businessProfileLink">Business Profile</a>
+<a href="#backups" id="backupsLink" hidden>Backup & Restore</a>
+                <a href="#products">Products</a>
+                <a href="#inventory">Inventory</a>
+                <a href="#sales">Sales</a>
+<a href="#customers" id="customersLink">Customer Management</a>
+                <a href="#staff" id="staffLink">Staff Management</a>
+                <a href="#supplierCredit" id="supplierCreditLink" hidden>Supplier Credit Management</a>
+                <a href="#reports" id="reportsLink">Reports</a>
+            </nav>
+
+            <button id="logoutButton" class="logout-button">Sign Out</button>
+        </aside>
+
+        <main class="dashboard-main">
+
+            <header class="dashboard-header">
+                <div>
+                    <h1>Business Dashboard</h1>
+                    <p>Manage your business operations.</p>
+                </div>
+
+                <div class="user-information">
+                    <span id="userRole">Loading role...</span>
+                </div>
+            </header>
+
+            <!-- OVERVIEW -->
+            <section id="overview">
+                <div class="welcome-section">
+                    <h2 id="welcomeTitle">Welcome to KABOWA</h2>
+                    <p id="businessName">Loading business information...</p>
+                </div>
+<div class="dashboard-cards inventory-overview-cards">
+
+    <div class="dashboard-card">
+        <h3>Total Active Products</h3>
+        <p id="totalActiveProducts">0</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Total Stock Units</h3>
+        <p id="totalStockUnits">0</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Low Stock Products</h3>
+        <p id="totalLowStockProducts">0</p>
+    </div>
+
+    <div class="dashboard-card">
+        <h3>Out of Stock Products</h3>
+        <p id="totalOutOfStockProducts">0</p>
+    </div>
+
+</div>
+
+                <div class="dashboard-cards">
+                    <div class="dashboard-card">
+                        <h3>Products</h3>
+                        <p>Manage your business products.</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Inventory</h3>
+                        <p>Monitor available stock.</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Sales</h3>
+                        <p>Manage customer transactions.</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Reports</h3>
+                        <p>Monitor business performance.</p>
+                    </div>
+                </div>
+            </section>
+<!-- BUSINESS PROFILE -->
+<section id="businessProfile" class="dashboard-information">
+
+    <h2>Business Profile</h2>
+    <p>View and manage your business contact information.</p>
+
+    <div id="businessProfileMessage" role="status">
+        Loading business profile...
+    </div>
+
+    <form id="businessProfileForm">
+
+        <div class="form-group">
+            <label for="profileBusinessName">Business Name</label>
+            <input type="text" id="profileBusinessName" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="profileBusinessType">Business Type</label>
+            <input type="text" id="profileBusinessType" readonly>
+        </div>
+
+        <div class="form-group">
+            <label for="profilePhone">Business Phone Number</label>
+            <input type="tel" id="profilePhone" maxlength="30"
+                   placeholder="Enter business phone number">
+        </div>
+
+        <div class="form-group">
+            <label for="profileEmail">Business Email Address</label>
+            <input type="email" id="profileEmail"
+                   placeholder="Enter business email">
+        </div>
+
+        <div class="form-group">
+            <label for="profileAddress">Physical Business Address</label>
+            <textarea id="profileAddress" maxlength="255"
+                      placeholder="Enter physical business address"></textarea>
+        </div>
+
+        <button type="submit" id="saveBusinessProfileButton">
+            Save Business Profile
+        </button>
+
+    </form>
+
+</section>
+
+            <!-- REPORTS -->
+            <section id="reports" class="dashboard-information">
+                <h2>Business Performance Reports</h2>
+                <p>Monitor your business financial and sales performance.</p>
+
+                <div class="report-date-filters">
+                    <label for="reportStartDate">Start Date</label>
+                    <input type="date" id="reportStartDate">
+
+                    <label for="reportEndDate">End Date</label>
+                    <input type="date" id="reportEndDate">
+
+                    <button type="button" id="applyReportFilters">Apply Filters</button>
+                    <button type="button" id="resetReportFilters">Reset Filters</button>
+                </div>
+
+                <div id="reportsMessage">Loading business reports...</div>
+
+                <div class="dashboard-cards">
+                    <div class="dashboard-card">
+                        <h3>Total Sales Revenue</h3>
+                        <p id="reportTotalRevenue">MWK 0.00</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Transactions</h3>
+                        <p id="reportTransactions">0</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Units Sold</h3>
+                        <p id="reportUnitsSold">0</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Average Transaction</h3>
+                        <p id="reportAverageTransaction">MWK 0.00</p>
+                    </div>
+<div class="dashboard-card">
+    <h3>Net Profit Margin</h3>
+    <p id="reportProfitMargin">0.00%</p>
+</div>
+<div class="dashboard-card">
+    <h3>Gross Profit Margin</h3>
+    <p id="reportGrossProfitMargin">0.00%</p>
+</div>
+<div class="dashboard-card">
+    <h3>Operating Profit Margin</h3>
+    <p id="reportOperatingProfitMargin">0.00%</p>
+</div>
+<div class="dashboard-card">
+    <h3>Net Profit After Finance</h3>
+    <p id="reportNetProfitAfterFinance">MWK 0.00</p>
+</div>
+<div class="dashboard-card">
+    <h3>Total Operating Expenses</h3>
+    <p id="reportTotalExpenses">MWK 0.00</p>
+</div>
+<div class="dashboard-card">
+    <h3>Total Cost of Goods Sold (COGS)</h3>
+    <p id="reportTotalCOGS">MWK 0.00</p>
+</div>
+<div class="dashboard-card">
+    <h3>Gross Profit</h3>
+    <p id="reportGrossProfit">MWK 0.00</p>
+</div>
+                </div>
+
+
+<!-- PROFIT AND LOSS STATEMENT -->
+<h3>Profit and Loss Statement</h3>
+<p>Financial performance for the selected reporting period.</p>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Amount (MWK)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Sales Revenue</td>
+                <td id="plRevenue">MWK 0.00</td>
+            </tr>
+            <tr>
+                <td>Less: Cost of Goods Sold</td>
+                <td id="plCogs">MWK 0.00</td>
+            </tr>
+            <tr>
+                <th>Gross Profit</th>
+                <th id="plGrossProfit">MWK 0.00</th>
+            </tr>
+            <tr>
+                <td>Less: Operating Expenses</td>
+                <td id="plExpenses">MWK 0.00</td>
+            </tr>
+            <tr>
+                <th>Operating Profit</th>
+                <th id="plOperatingProfit">MWK 0.00</th>
+            </tr>
+            <tr>
+                <td>Add: Customer Loan Interest Income</td>
+                <td id="plInterestIncome">MWK 0.00</td>
+            </tr>
+            <tr>
+                <td>Less: Borrowed Loan Interest Expense</td>
+                <td id="plInterestExpense">MWK 0.00</td>
+            </tr>
+            <tr>
+                <th>Net Profit / (Loss) After Finance</th>
+                <th id="plNetProfit">MWK 0.00</th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- END PROFIT AND LOSS STATEMENT -->
+
+ <h3>Top Five Best-Selling Products</h3>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>SKU</th>
+                                <th>Quantity Sold</th>
+                                <th>Sales Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="topProductsTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- INVENTORY MANAGEMENT -->
+<section id="inventory" class="dashboard-information">
+
+    <h2>Inventory Management</h2>
+    <p>Manage stock levels, record adjustments and monitor stock movements.</p>
+
+    <hr>
+
+    <h3>Stock Adjustment</h3>
+    <p>Record new stock received or stock removed due to damage, loss or other reasons.</p>
+
+    <form id="stockAdjustmentForm">
+
+        <div class="form-group">
+            <label for="adjustmentProduct">Select Product</label>
+            <select id="adjustmentProduct" required>
+                <option value="">Select a product</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="adjustmentType">Adjustment Type</label>
+            <select id="adjustmentType" required>
+                <option value="">Select adjustment type</option>
+                <option value="add">Add Stock</option>
+                <option value="remove">Remove Stock</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="adjustmentQuantity">Quantity</label>
+            <input type="number" id="adjustmentQuantity"
+                   min="1" step="1" required>
+        </div>
+
+        <div class="form-group">
+            <label for="adjustmentReason">Reason for Adjustment</label>
+            <textarea id="adjustmentReason"
+                      maxlength="255"
+                      placeholder="Enter reason for stock adjustment"
+                      required></textarea>
+        </div>
+
+        <button type="submit" id="stockAdjustmentButton">
+            Record Stock Adjustment
+        </button>
+
+        <p id="stockAdjustmentMessage" role="status"></p>
+
+    </form>
+
+    <hr>
+
+    <h3>Inventory Alerts</h3>
+    <p>Monitor products that require stock replenishment.</p>
+
+    <div id="inventoryMessage">Loading inventory alerts...</div>
+    <div id="lowStockProducts"></div>
+<hr>
+
+<h3>Stock Movement History</h3>
+<p>View all stock additions and removals recorded in your business.</p>
+
+<div id="stockMovementsMessage">
+    Loading stock movement history...
+</div>
+
+<div style="overflow-x: auto;">
+    <table>
+        <thead>
+            <tr>
+                <th>Product ID</th>
+                <th>Movement Type</th>
+                <th>Quantity</th>
+                <th>Stock Before</th>
+                <th>Stock After</th>
+                <th>Reason</th>
+                <th>Date and Time</th>
+                <th>User ID</th>
+            </tr>
+        </thead>
+
+        <tbody id="stockMovementsTableBody"></tbody>
+    </table>
+</div>
+
+</section>
+
+            <!-- STAFF MANAGEMENT -->
+            <section id="staff" class="dashboard-information">
+                <h2>Staff Management</h2>
+                <p>Register and manage your business employees.</p>
+
+                <h3>Register New Employee</h3>
+
+                <form id="staffForm">
+                    <div class="form-group">
+                        <label for="staffName">Full Name</label>
+                        <input type="text" id="staffName" minlength="2" maxlength="150" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="staffEmail">Email Address</label>
+                        <input type="email" id="staffEmail" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="staffPassword">Password</label>
+                        <input type="password" id="staffPassword" minlength="12" maxlength="128" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="staffRole">Employee Role</label>
+                        <select id="staffRole" required>
+                            <option value="manager">Manager</option>
+                            <option value="cashier">Cashier</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" id="registerStaffButton">Register Employee</button>
+                    <p id="staffFormMessage" role="status"></p>
+                </form>
+
+                <hr>
+
+                <h3>Registered Employees</h3>
+                <div id="staffMessage">Loading employees...</div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Account Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="staffTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+<!-- CUSTOMER MANAGEMENT -->
+<section id="customers" class="dashboard-information">
+    <h2>Customer Management</h2>
+    <p>Register, search and manage your business customers.</p>
+
+    <h3>Register New Customer</h3>
+
+    <form id="customerForm">
+        <div class="form-group">
+            <label for="customerName">Full Name</label>
+            <input type="text" id="customerName" maxlength="150" required>
+        </div>
+
+        <div class="form-group">
+            <label for="customerPhone">Phone Number</label>
+            <input type="tel" id="customerPhone" maxlength="30" required>
+        </div>
+
+        <div class="form-group">
+            <label for="customerEmail">Email Address (Optional)</label>
+            <input type="email" id="customerEmail">
+        </div>
+
+        <div class="form-group">
+            <label for="customerAddress">Address</label>
+            <textarea id="customerAddress" maxlength="255"></textarea>
+        </div>
+
+        <button type="submit" id="registerCustomerButton">
+            Register Customer
+        </button>
+
+        <p id="customerFormMessage" role="status"></p>
+    </form>
+
+    <hr>
+
+    <h3>Registered Customers</h3>
+
+    <div class="form-group">
+        <label for="customerSearch">Search by Name or Phone</label>
+        <input type="search" id="customerSearch"
+               placeholder="Enter customer name or phone number">
+    </div>
+
+    <div id="customerMessage">Loading customers...</div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="customersTableBody"></tbody>
+        </table>
+    </div>
+</section>
+            <!-- SUPPLIER CREDIT MANAGEMENT -->
+            <section id="supplierCredit" class="dashboard-information" hidden>
+                <h2>Supplier Credit Management</h2>
+                <p>Monitor supplier debts, record payments and track outstanding balances.</p>
+
+                <div id="supplierCreditMessage">Loading supplier credit accounts...</div>
+
+                <div class="dashboard-cards">
+                    <div class="dashboard-card">
+                        <h3>Total Credit Accounts</h3>
+                        <p id="supplierCreditCount">0</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Total Credit Amount</h3>
+                        <p id="supplierCreditTotal">MWK 0.00</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Total Amount Paid</h3>
+                        <p id="supplierCreditPaid">MWK 0.00</p>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Outstanding Balance</h3>
+                        <p id="supplierCreditOutstanding">MWK 0.00</p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h3>Supplier Credit Accounts</h3>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Supplier</th>
+                                <th>Purchase ID</th>
+                                <th>Original Amount</th>
+                                <th>Amount Paid</th>
+                                <th>Balance Due</th>
+                                <th>Due Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="supplierCreditTableBody"></tbody>
+                    </table>
+                </div>
+
+                <hr>
+
+                <h3>Record Supplier Payment</h3>
+                <p>Record a partial payment or settle an outstanding supplier credit account.</p>
+
+                <form id="supplierCreditPaymentForm">
+                    <div class="form-group">
+                        <label for="supplierCreditSelect">Supplier Credit Account</label>
+                        <select id="supplierCreditSelect" required>
+                            <option value="">Select a credit account</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supplierPaymentAmount">Payment Amount (MWK)</label>
+                        <input type="number" id="supplierPaymentAmount" min="0.01" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supplierPaymentDate">Payment Date</label>
+                        <input type="date" id="supplierPaymentDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supplierPaymentReference">Payment Reference (Optional)</label>
+                        <input type="text" id="supplierPaymentReference" maxlength="100">
+                    </div>
+
+                    <button type="submit" id="recordSupplierPaymentButton">Record Payment</button>
+                    <p id="supplierPaymentMessage" role="status"></p>
+                </form>
+
+                <hr>
+
+                <h3>Supplier Payment History</h3>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Supplier</th>
+                                <th>Credit ID</th>
+                                <th>Payment Date</th>
+                                <th>Amount Paid</th>
+                                <th>Reference</th>
+                            </tr>
+                        </thead>
+                        <tbody id="supplierPaymentHistoryBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- SALES -->
+            <section id="sales" class="dashboard-information">
+
+                <!-- POINT OF SALE CHECKOUT -->
+                <div id="posCheckout" class="dashboard-information pos-checkout">
+
+                    <div class="pos-heading">
+                        <div>
+                            <span class="pos-eyebrow">SALES MANAGEMENT</span>
+                            <h2>New Sale / Point of Sale</h2>
+                            <p>Select products and quantities to create a customer sale.</p>
+                        </div>
+                        <div class="pos-heading-icon">🛒</div>
+                    </div>
+
+                    <div id="posMessage" class="pos-message">
+                        Loading available products...
+                    </div>
+
+                    <div class="pos-selection-panel">
+                        <h3>Product Selection</h3>
+                        <p>Choose a product and specify the quantity you want to sell.</p>
+
+                        <div class="pos-form-grid">
+                            <div class="pos-form-group">
+                                <label for="posProduct">Select Product</label>
+                                <select id="posProduct">
+                                    <option value="">Loading products...</option>
+                                </select>
+                            </div>
+
+                            <div class="pos-form-group">
+                                <label for="posQuantity">Quantity</label>
+                                <input type="number" id="posQuantity" min="1" value="1">
+                            </div>
+                        </div>
+
+                        <button type="button" id="addToCartButton" class="pos-add-button">
+                            + Add to Cart
+                        </button>
+                    </div>
+
+                    <div class="pos-cart-section">
+                        <div class="pos-cart-heading">
+                            <div>
+                                <h3>Shopping Cart</h3>
+                                <p>Review the products before completing the sale.</p>
+                            </div>
+                            <span class="pos-cart-icon">🛍️</span>
+                        </div>
+
+                        <div class="table-container pos-table-container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Unit Price</th>
+                                        <th>Quantity</th>
+                                        <th>Subtotal</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="posCartBody"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="pos-total-panel">
+                            <div>
+                                <span>Order Total</span>
+                                <p>Final amount payable by the customer</p>
+                            </div>
+                            <strong id="posTotal">MWK 0.00</strong>
+                        </div>
+
+                        <button type="button" id="completeSaleButton"
+                                class="pos-complete-button" disabled>
+                            Complete Sale →
+                        </button>
+                    </div>
+
+                </div>
+                <!-- END POINT OF SALE CHECKOUT -->
+
+                <hr>
+
+                                <div class="sales-history">
+
+                    <div class="sales-heading">
+                        <div>
+                            <span class="sales-eyebrow">TRANSACTION MANAGEMENT</span>
+                            <h2>Sales History</h2>
+                            <p>View, monitor and print completed customer transactions.</p>
+                        </div>
+
+                        <div class="sales-heading-icon">📊</div>
+                    </div>
+
+                    <div id="salesMessage" class="sales-message">
+                        Loading sales records...
+                    </div>
+
+                    <div class="sales-table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Receipt Number</th>
+                                    <th>Date & Time</th>
+                                    <th>Cashier ID</th>
+                                    <th>Items Sold</th>
+                                    <th>Total Amount</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="salesTableBody"></tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- PRODUCT MANAGEMENT -->
+            <section id="products" class="dashboard-information">
+                <h2>Product Management</h2>
+                <p>View and monitor your registered business products.</p>
+
+                <h3>Register New Product</h3>
+
+<form id="productForm">
+
+    <div class="form-group">
+        <label for="productName">Product Name</label>
+        <input type="text" id="productName"
+               minlength="2" maxlength="150" required>
+    </div>
+
+    <div class="form-group">
+        <label for="productSku">Product SKU / Code</label>
+        <input type="text" id="productSku"
+               maxlength="60" required>
+    </div>
+
+    <div class="form-group">
+        <label for="productDescription">Description</label>
+        <textarea id="productDescription"
+                  maxlength="500"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="productCostPrice">Cost Price (MWK)</label>
+        <input type="number" id="productCostPrice"
+               min="0" step="0.01" required>
+    </div>
+
+    <div class="form-group">
+        <label for="productSellingPrice">Selling Price (MWK)</label>
+        <input type="number" id="productSellingPrice"
+               min="0" step="0.01" required>
+    </div>
+
+    <div class="form-group">
+        <label for="productStock">Opening Stock Quantity</label>
+        <input type="number" id="productStock"
+               min="0" step="1" required>
+    </div>
+
+    <div class="form-group">
+        <label for="productThreshold">Low Stock Alert Threshold</label>
+        <input type="number" id="productThreshold"
+               min="0" step="1" value="5" required>
+    </div>
+
+    <button type="submit" id="registerProductButton">
+        Register Product
+    </button>
+
+    <p id="productFormMessage" role="status"></p>
+
+</form>
+
+<hr>
+
+<div id="productsMessage">Loading products...</div>
+
+                <div class="table-container">
+                    <table id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>SKU</th>
+                                <th>Selling Price</th>
+                                <th>Available Stock</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody"></tbody>
+                    </table>
+                </div>
+            </section>
+
+<!-- BACKUP AND RESTORE -->
+<section id="backups" class="dashboard-information" hidden>
+
+    <h2>Backup & Restore</h2>
+
+    <p>
+        Create and manage backups of your business records.
+        Only the business owner can access this section.
+    </p>
+
+    <div class="form-actions">
+        <button type="button" id="createBackupButton">
+            Create Backup
+        </button>
+
+        <button type="button" id="refreshBackupsButton">
+            Refresh History
+        </button>
+    </div>
+
+    <p id="backupMessage" role="status"></p>
+
+    <h3>Backup History</h3>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Date Created</th>
+                    <th>Backup Type</th>
+                    <th>File Size</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="backupsTableBody">
+                <tr>
+                    <td colspan="4">No backups loaded yet.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>
+        <strong>Important:</strong>
+        Restoring a backup replaces the current records for this
+        business. A safety backup is created automatically first.
+    </p>
+
+</section>
+<!-- INFORMATION -->
+            <section class="dashboard-information">
+                <h2>Your Business Management Platform</h2>
+                <p>Manage your daily business activities from one central platform.</p>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- SUPPLIER PAYMENT HISTORY MODAL -->
+    <div id="supplierPaymentModal" class="modal-overlay" hidden>
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h2>Supplier Payment History</h2>
+
+                <button type="button" id="closeSupplierPaymentModal">
+                    &times;
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <p><strong>Supplier:</strong>
+                    <span id="modalSupplierName">—</span>
+                </p>
+
+                <p><strong>Credit Account:</strong>
+                    <span id="modalCreditId">—</span>
+                </p>
+
+                <p><strong>Original Amount:</strong>
+                    <span id="modalOriginalAmount">—</span>
+                </p>
+
+                <p><strong>Total Amount Paid:</strong>
+                    <span id="modalTotalPaid">—</span>
+                </p>
+
+                <p><strong>Remaining Balance:</strong>
+                    <span id="modalRemainingBalance">—</span>
+                </p>
+
+                <p><strong>Payment Status:</strong>
+                    <span id="modalPaymentStatus">—</span>
+                </p>
+
+                <h3>Payment Transactions</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Reference</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="modalPaymentHistoryBody"></tbody>
+                </table>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" id="closeSupplierPaymentModalFooter">
+                    Close
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>

@@ -222,3 +222,12 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 *.db
+business_backups/
+# Local recovery and maintenance scripts
+*_before_*.py
+main_committed_recovery.py
+main_damaged_backup.py
+main_rebuilt.py
+reset_owner_password.py
+# All old recovery copies
+*_before_*.*
