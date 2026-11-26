@@ -212,7 +212,7 @@ def create_backup_file(
 
     try:
         with temporary_path.open("w", encoding="utf-8") as file:
-            json.dump(payload, file, ensure_ascii=False, indent=2)
+            json.dump(payload, file, ensure_ascii=False, indent=2, default=str)
 
         os.replace(temporary_path, path)
 
