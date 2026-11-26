@@ -9,7 +9,7 @@ from pathlib import Path
 
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.responses import FileResponse
-from sqlalchemy import text
+from sqlalchemy import inspect, text
 from sqlalchemy.orm import Session
 
 from .database import get_db
@@ -235,13 +235,10 @@ def create_backup_file(
 
 
 def table_columns(db: Session, table: str) -> set:
-    rows = db.execute(
-        text(f"PRAGMA table_info({table})")
-    ).mappings().all()
+    inspector = inspect(db.get_bind())
+    columns = inspector.get_columns(table)
 
-    return {row["name"] for row in rows}
-
-
+    return {column["name"] for column in columns}
 def validate_backup(
     db: Session,
     payload: dict,
@@ -527,6 +524,7 @@ def restore_business_backup(
         )
 
         insert_backup_records(db, payload["tables"])
+        reset_postgresql_sequences(db)
 
         db.commit()
 
@@ -546,3 +544,19 @@ def restore_business_backup(
         "business_id": business_id,
         "safety_backup_id": safety_backup["backup_id"],
     }
+def reset_postgresql_sequences(db: Session) -> None:
+    if db.get_bind().dialect.name != "postgresql":
+        return
+
+    for table in TABLES:
+        db.execute(
+            text(
+                f"""
+                SELECT setval(
+                    pg_get_serial_sequence('{table}', 'id'),
+                    COALESCE((SELECT MAX(id) FROM {table}), 1),
+                    EXISTS (SELECT 1 FROM {table})
+                )
+                """
+            )
+        )
